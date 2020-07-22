@@ -2,8 +2,9 @@
     <div id="app">
         <app-header></app-header>
         <app-home></app-home>
-        <app-menu></app-menu>
-
+       <!-- <app-menu></app-menu>
+-->
+        <app-admin></app-admin>
     <md-button class="md-icon-button">
         <md-icon>home</md-icon>
     </md-button>
@@ -14,7 +15,8 @@
 
 
     import Home from "@/components/Home";
-    import Menu from "@/components/Menu";
+
+    import Admin from "@/components/Admin";
     import Header from "@/components/Header";
 
     export default {
@@ -22,7 +24,8 @@
         components: {
             appHeader: Header,
             appHome: Home,
-            appMenu: Menu
+          //  appMenu: Menu,
+            appAdmin: Admin
 
         }
     }
