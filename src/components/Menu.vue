@@ -38,20 +38,24 @@
                     <md-list  class="md-triple-line" v-for="(item,index) in basket" :key="basket[index]">
 
                         <md-list-item>
+
                             <div class="md-title">{{item.name}}</div>
                             <div class="md-subhead">{{item.size}}</div>
                             <div class="md-subhead">{{item.price}}</div>
                             <div class="md-subhead">{{item.price*item.quantity}}</div>
 
-                            <md-button class="md-icon-button md-list-action">
+                            <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
                                 <md-icon class="md-primary">add</md-icon>
                             </md-button>
 
                             <div class="md-subhead">{{item.quantity}}</div>
-                            <md-button class="md-icon-button md-list-action" style="align-self: center">
+                            <md-button class="md-icon-button md-list-action" style="align-self: center" @click="decreaseQuantity(item)">
 
                                 <md-icon class="md-primary">remove</md-icon>
                             </md-button>
+                            <md-button class="md-icon-button md-dense md-raised md-primary" @click="removeFomBasket(item)">
+                            <md-icon>cached</md-icon>
+                        </md-button>
                         </md-list-item>
 
                         <hr>
@@ -150,6 +154,19 @@
                     size: option.size,
                     quantity:1,
                 })
+            },
+            decreaseQuantity(item){
+                item.quantity--
+            },
+
+            increaseQuantity(item){
+                item.quantity++;
+                if (item.quantity===0){
+                    this.removeFomBasket(item)
+                }
+            },
+            removeFomBasket(item){
+                this.basket.splice(this.basket.indexOf(item),1)
             }
         }
 
