@@ -1,6 +1,7 @@
 <template>
     <div class="admin-wrapper">
         <div  class="current-user">
+        <new-dress></new-dress>
         </div>
 
         <div class="stock-wrapper">
@@ -91,8 +92,13 @@
 </template>
 
 <script>
+    import NewDress from "@/components/NewDress";
     export default {
-        name: "Admin"
+        name: "Admin",
+        components:{
+            newDress:NewDress
+        }
+
     }
 </script>
 
