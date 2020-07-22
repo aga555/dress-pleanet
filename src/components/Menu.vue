@@ -12,45 +12,24 @@
                     <md-card-header>
                         <div class="md-title"> {{item.name }}</div>
                         <div class="md-subhead">{{item.price}}</div>
-                        <div class="md-subhead" v-for="(option,index) in item.options" :key="option[index]"> size: {{option.size}}</div>
+                        <div class="md-subhead" v-for="(option,index) in item.options" :key="option[index]"> size: {{option.size}}
+
+                                <md-button @click="addToBasket(item, option)">    <md-icon>add</md-icon> </md-button>
+
+
+                        </div>
                     </md-card-header>
 
-                    <md-card-actions>
-                        <md-button>Add to basket</md-button>
 
-                    </md-card-actions>
 
                     <md-card-content>
                      {{item.description}}
                     </md-card-content>
                 </md-card>
             </md-layout>
-              <!--  <md-card>
-                    <md-card-media>
-                        <img src="{{item.img}}" alt="dress" style="width:200px">
-                    </md-card-media>
-
-                    <md-card-header>
-                        <div class="md-title"> Green dress</div>
 
 
-                    </md-card-header>
-
-                    <md-card-actions>
-                        <md-button>Add to basket</md-button>
-
-                    </md-card-actions>
-
-                    <md-card-content>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio.
-                        Dolores,
-                        sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus
-                        sint.
-                        Excepturi.
-                    </md-card-content>
-                </md-card>-->
-
-
+{{basket}}
         </div>
         <div class="basket-wrapper">
             <h4> Basket </h4>
@@ -70,6 +49,7 @@
         name: "Menu",
         data: function () {
             return {
+                basket:[],
                 getMenuItems: {
 
                     1: {
@@ -125,6 +105,22 @@
                 }
 
 
+            }
+        },methods:{
+            async addToBasket (item, option){
+                const dressExist = await this.basket.find(
+                    dress => dress.name === item.name && dress.size === option.size
+                );
+                if(dressExist){
+                    dressExist.quantity++;
+                    return
+                }
+                this.basket.push({
+                    name:item.name,
+                    price:item.price,
+                    size: option.size,
+                    quantity:1,
+                })
             }
         }
 
