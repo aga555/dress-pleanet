@@ -11,10 +11,10 @@
 
                     <md-card-header>
                         <div class="md-title"> {{item.name }}</div>
+
                         <div class="md-subhead">{{item.price}}</div>
                         <div class="md-subhead" v-for="(option,index) in item.options" :key="option[index]"> size: {{option.size}}
-
-                                <md-button @click="addToBasket(item, option)">    <md-icon>add</md-icon> </md-button>
+                            <md-button @click="addToBasket(item, option)">    <md-icon>add</md-icon> </md-button>
 
 
                         </div>
@@ -29,13 +29,41 @@
             </md-layout>
 
 
-{{basket}}
         </div>
+        <!--shopping basket-->
         <div class="basket-wrapper">
-            <h4> Basket </h4>
-            <p>
-                Thank you for order
-            </p>
+            <h3> Basket </h3>
+<div v-if="basket.length>0">
+
+                    <md-list  class="md-triple-line" v-for="(item,index) in basket" :key="basket[index]">
+
+                        <md-list-item>
+                            <div class="md-title">{{item.name}}</div>
+                            <div class="md-subhead">{{item.size}}</div>
+                            <div class="md-subhead">{{item.price}}</div>
+                            <div class="md-subhead">{{item.price*item.quantity}}</div>
+
+                            <md-button class="md-icon-button md-list-action">
+                                <md-icon class="md-primary">add</md-icon>
+                            </md-button>
+
+                            <div class="md-subhead">{{item.quantity}}</div>
+                            <md-button class="md-icon-button md-list-action" style="align-self: center">
+
+                                <md-icon class="md-primary">remove</md-icon>
+                            </md-button>
+                        </md-list-item>
+
+                        <hr>
+
+                    </md-list>
+            <h4> Total cost </h4>
+            <md-button class="md-primary">order</md-button>
+</div> <div v-else>
+            <p> {{basketText}}</p>
+
+        </div>
+
         </div>
     </div>
 </template>
@@ -49,6 +77,7 @@
         name: "Menu",
         data: function () {
             return {
+                basketText:"Your Basket is empty",
                 basket:[],
                 getMenuItems: {
 
@@ -139,16 +168,22 @@
         display: flex;
         flex-direction: column;
     }
+.basket-wrapper{
+    flex-direction: row;
 
+}
     @media screen and (min-width: 900px) {
         .menu-wrapper {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+
         }
 
         .menu {
             width: 60vw;
+        }
+        .basket-wrapper{
+            width: 40vw;
         }
     }
 </style>
