@@ -5,30 +5,31 @@
             <h1> super dress </h1>
         </div>
 
-        <nav>
-            <ul>
-
-                <router-link to='/home' tag="li">
-                    <a> home </a>
-                </router-link>
+        <md-tabs class="md-transparent" md-alignment="fixed">
+            <md-tab id="tab-home" md-label="Home" to='/home'>
 
 
-                <router-link to='/contact' tag="li">
-                    <a> contact </a>
-                </router-link>
+            </md-tab>
+            <md-tab id="tab-contact" md-label="contact" to='/contact'>
+            </md-tab>
+            <md-tab id="tab-stock" md-label="stock" :to="{name: 'stockLink'}">
+
+            </md-tab>
+            <md-tab id="tab-about" md-label="about us " to='/about'>
+
+                <md-list>
+                    <md-list-item to='/history'>Our history</md-list-item>
+                    <md-list-item to='/guide'>Ordering guide</md-list-item>
+                    <md-list-item to='/delivery'>Delivery information</md-list-item>
+                </md-list>
+            </md-tab>
+            <md-tab id="tab-login" md-label="login " to='/login'>
 
 
-                <router-link :to="{name: 'stockLink'}" tag="li">
-                    <a> menu </a>
-                </router-link>
-
-                <router-link to='/about' tag="li">
-                    <a> about </a>
-                </router-link>
+            </md-tab>
+        </md-tabs>
 
 
-            </ul>
-        </nav>
     </header>
 </template>
 

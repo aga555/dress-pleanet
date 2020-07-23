@@ -2,7 +2,7 @@
 
         <div class="row col-sm-12" style="display: flex">
             <div class="col-6" style="width: 40vw; margin-left: 30px">
-                <h2 class="about-heading"> our history </h2>
+                <h2 class="about-heading"> Delivery </h2>
                 <p class="about-text">The dress can be delivered within the city of Warsaw and surrounding areas,<br>
                     but we also deliver nationwide. The cost of nationwide deliveries in accordance with the price list of courier services provider.
                     Courier parcels are dispatched on the next working day.<br>
