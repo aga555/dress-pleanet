@@ -14,6 +14,9 @@ import NewDress from "@/components/NewDress";
 import Admin from "@/components/Admin";
 import Login from "@/components/Login";
 import VueRouter from "vue-router";
+import Guide from "@/components/Guide";
+import History from "@/components/History";
+import Delivery from "@/components/Delivery";
 
 Vue.config.productionTip = false
 
@@ -33,12 +36,19 @@ const routers = [
         name: Home,
         component: Home
     },
-    {path: '/menu/:items', component: Menu},
+    {path: '/menu', component: Menu},
     {path: '/contact', component: Contact},
-    {path: '/about', component: AboutUs},
+    {path: '/about', component: AboutUs,
+    children:[
+        {path: '/history', component: History},
+        {path: '/guide', component: Guide},
+        {path: '/delivery', component: Delivery},
+
+    ]},
     {path: '/admin', component: Admin},
     {path: '/login', component: Login},
-    {path: '/newDress', component: NewDress}
+    {path: '/newDress', component: NewDress},
+    {path: '*', redirect:'/home'}
 
 ];
 

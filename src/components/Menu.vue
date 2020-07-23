@@ -1,7 +1,7 @@
 <template>
     <div class="menu-wrapper">
         <!--menu-->
-        {{$route.params.items}}
+
         <div class="menu">
             <md-card md-flex="50" v-for="(item) in getMenuItems" :key="item.id">
 
