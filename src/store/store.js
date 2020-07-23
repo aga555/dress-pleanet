@@ -60,11 +60,15 @@ export const store = new Vuex.Store(
                 },
             },
 
-        orders:[]
+            orders: []
         },
-        getters:{
-            getStockItems:state => state.stockItems,
-            numberOfOrders:state => state.orders.length
+        getters: {
+            getStockItems: state => state.stockItems,
+            numberOfOrders: state => state.orders.length
+        },
+
+        mutations: {
+            addOrder:(state ,orders)=> state.orders.push(orders)
         }
-    }
+    },
 )
