@@ -1,6 +1,4 @@
-
 import Home from "@/components/Home";
-import Menu from "@/components/Menu";
 import Contact from "@/components/Contact";
 import AboutUs from "@/components/AboutUs";
 import NewDress from "@/components/NewDress";
@@ -10,6 +8,7 @@ import Login from "@/components/Login";
 import Guide from "@/components/Guide";
 import History from "@/components/History";
 import Delivery from "@/components/Delivery";
+import Stock from "@/components/Stock";
 
 export const routers = [
     {
@@ -17,7 +16,7 @@ export const routers = [
         name: Home,
         component: Home
     },
-    {path: '/menu', name: 'stockLink', component: Menu},
+    {path: '/stock', name: 'stockLink', component: Stock},
     {path: '/contact', component: Contact},
 
     {

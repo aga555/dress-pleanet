@@ -5,7 +5,7 @@ import 'vue-material/dist/vue-material.min.css'
 import {MdButton, MdCard, MdContent, MdField, MdLayout, MdList, MdTable, MdTabs} from 'vue-material/dist/components'
 import 'vue-material/dist/theme/default.css'
 import {routers} from "./routers";
-
+import {store} from "./store/store";
 import VueRouter from "vue-router";
 Vue.config.productionTip = false
 
@@ -43,6 +43,6 @@ const router = new VueRouter({
 Vue.use(MdField);
 Vue.use(VueMaterial);
 new Vue({
-    router,
+    router,store,
     ...App
 }).$mount('#app')

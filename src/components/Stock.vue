@@ -3,7 +3,7 @@
         <!--menu-->
 
         <div class="menu">
-            <md-card md-flex="50" v-for="(item) in getMenuItems" :key="item.id">
+            <md-card md-flex="50" v-for="(item) in getStockItems" :key="item.id">
 
 
                     <md-card-media>
@@ -34,7 +34,7 @@
         <!--shopping basket-->
         <div class="basket-wrapper">
             <h3> Basket </h3>
-<div v-if="basket.length>0">
+                <div v-if="basket.length>0">
 
                     <md-list  class="md-triple-line" v-for="(item,index) in basket" :key="basket[index]">
 
@@ -79,68 +79,21 @@
 
 
     export default {
-        name: "Menu",
+        name: "Stock",
         data: function () {
             return {
                 basketText:"Your Basket is empty",
                 basket:[],
-                getMenuItems: {
-
-                    1: {
-                        id: 1,
-                        name: " Black dress",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
-                        options: [
-                            {size: 36},
-                            {size: 38},
-                            {size: 40}
-                        ],
-                        price: 200,
-                        //url: '../assets/dress-green.jpg'
-                      //  url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
-                    },
-                    2: {
-                        id: 2,
-                        name: " Green dress",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
-                        options: [
-                            {size: 36},
-                            {size: 38},
-                            {size: 40}
-                        ],
-                        price: 200,
-                        img: "../assets/dress-green.jpg"
-                    },
-                    3: {
-                        id: 3,
-                        name: " Pink dress",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
-                        options: [
-                            {size: 36},
-                            {size: 38},
-                            {size: 40}
-                        ],
-                        price: 200,
-                        img: "../assets/pink-dress.jpg"
-                    },
-                    4: {
-                        id: 4,
-                        name: " Red dress",
-                        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
-                        options: [
-                            {size: 36},
-                            {size: 38},
-                            {size: 40},
-                            {size: 42}
-                        ],
-                        price: 200,
-                        img: "../assets/red-dress.jpg"
-                    },
-                }
-
 
             }
-        },methods:{
+        },
+        computed:{
+            getStockItems(){
+                return this.$store.state.stockItems;
+            }
+        }
+        ,
+        methods:{
             async addToBasket (item, option){
                 const dressExist = await this.basket.find(
                     dress => dress.name === item.name && dress.size === option.size

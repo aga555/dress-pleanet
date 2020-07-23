@@ -9,49 +9,30 @@
         <div class="stock-wrapper">
             <h4> stock </h4>
 
-            <md-table>
-                <md-table-row>
-
-                    <md-table-head>id</md-table-head>
-                    <md-table-head>Name</md-table-head>
 
 
-                    <md-table-head>Remove</md-table-head>
-                </md-table-row>
+    <md-table >
+   <md-table-row>
 
-                <md-table-row>
-                    <md-table-cell md-numeric>1</md-table-cell>
-                    <md-table-cell>Red dress</md-table-cell>
+            <md-table-head>id</md-table-head>
+            <md-table-head>Name</md-table-head>
+            <md-table-head>Price</md-table-head>
+            <md-table-head>Remove</md-table-head>
 
-                    <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary">
-                            <md-icon>cached</md-icon>
-                        </md-button>
-                    </md-table-cell>
-                </md-table-row>
-                <md-table-row>
-                    <md-table-cell md-numeric>2</md-table-cell>
-                    <md-table-cell>Black dress</md-table-cell>
+        </md-table-row>
 
-                    <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary">
-                            <md-icon>cached</md-icon>
-                        </md-button>
-                    </md-table-cell>
-                </md-table-row>
-                <md-table-row>
-                    <md-table-cell md-numeric>3</md-table-cell>
-                    <md-table-cell>Pink dress</md-table-cell>
 
-                    <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary">
-                            <md-icon>cached</md-icon>
-                        </md-button>
-                    </md-table-cell>
+            <md-table-row v-for="item in getStockItems" :key="item.id">
+                    <md-table-cell > {{item.id}}</md-table-cell>
+                    <md-table-cell>{{item.name}}</md-table-cell>
+                    <md-table-cell>{{item.price}}</md-table-cell>
+                    <md-table-cell><md-button class="md-icon-button md-dense md-raised md-primary"><md-icon>cached</md-icon></md-button></md-table-cell>
+            </md-table-row>
+        </md-table>
 
-                </md-table-row>
-            </md-table>
         </div>
+
+
         <div class="order-wrapper">
 
             <h4>Current orders</h4>
@@ -111,7 +92,11 @@
             newDress: NewDress,
             login: Login
         },
-
+        computed:{
+                    getStockItems() {
+                    return this.$store.state.stockItems;
+                    }
+            },
 
         methods: {
             async signOut() {
