@@ -36,19 +36,21 @@ const routers = [
         name: Home,
         component: Home
     },
-    {path: '/menu', name: 'stockLink',component: Menu},
+    {path: '/menu', name: 'stockLink', component: Menu},
     {path: '/contact', component: Contact},
-    {path: '/about', component: AboutUs,
-    children:[
-        {path: '/history', component: History},
-        {path: '/guide', component: Guide},
-        {path: '/delivery', component: Delivery},
+    {
+        path: '/about', component: AboutUs,
+        children: [
+            {path: '/history', component: History},
+            {path: '/guide', component: Guide},
+            {path: '/delivery', component: Delivery},
 
-    ]},
+        ]
+    },
     {path: '/admin', component: Admin},
     {path: '/login', component: Login},
     {path: '/newDress', component: NewDress},
-    {path: '*', redirect:'/home'}
+    {path: '*', redirect: '/home'}
 
 ];
 
@@ -59,10 +61,14 @@ const router = new VueRouter({
     mode: 'history'
 });
 
+router.beforeEach((to, form, next) => {
+
+    next()
+})
 
 Vue.use(MdField);
 Vue.use(VueMaterial);
 new Vue({
     router,
-  ...App
+    ...App
 }).$mount('#app')
