@@ -1,40 +1,34 @@
 <template>
     <header>
-        <div  class="row col-sm-12">
+        <div class="row col-sm-12">
             <img src="../assets/super-dress-logo.png" class="header-logo" alt="logo">
             <h1> super dress </h1>
         </div>
 
-    <nav>
-        <ul>
-            <li>
-                <router-link to='/home'>
-                <a> home </a>
-                </router-link>
-            </li>
+        <nav>
+            <ul>
 
-
-            <li>
-                <router-link to='/contact'>
-                <a > contact </a>
-                </router-link>
-            </li>
-
-            <li>
-                <router-link to ='/menu'>
-                    <a > menu </a>
+                <router-link to='/home' tag="li">
+                    <a> home </a>
                 </router-link>
 
-            </li>
 
-            <li>
-                <router-link to='/about'>
-                    <a > about </a>
+                <router-link to='/contact' tag="li">
+                    <a> contact </a>
                 </router-link>
-            </li>
--->
-        </ul>
-    </nav>
+
+
+                <router-link to='/menu' tag="li">
+                    <a> menu </a>
+                </router-link>
+
+                <router-link to='/about' tag="li">
+                    <a> about </a>
+                </router-link>
+
+
+            </ul>
+        </nav>
     </header>
 </template>
 
@@ -46,24 +40,27 @@
 </script>
 
 <style scoped>
-h1 {
-    font-size:20px;
-    color: black;
-}
-    .header-logo{
+    h1 {
+        font-size: 20px;
+        color: black;
+    }
+
+    .header-logo {
         width: 100px;
     }
-    ul{
+
+    ul {
         padding: 10px 0;
     }
-    li{
+
+    li {
         display: inline-block;
     }
 
-    @media screen and (min-width: 900px){
-.header-logo{
-    max-width: 100px;
-}
+    @media screen and (min-width: 900px) {
+        .header-logo {
+            max-width: 100px;
+        }
     }
 
 </style>

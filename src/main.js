@@ -33,7 +33,7 @@ const routers = [
         name: Home,
         component: Home
     },
-    {path: '/menu', component: Menu},
+    {path: '/menu/:items', component: Menu},
     {path: '/contact', component: Contact},
     {path: '/about', component: AboutUs},
     {path: '/admin', component: Admin},
