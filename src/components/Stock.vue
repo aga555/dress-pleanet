@@ -89,7 +89,7 @@
         },
         computed:{
             getStockItems(){
-                return this.$store.state.stockItems;
+                return this.$store.state.getters.getStockItems();
             }
         }
         ,

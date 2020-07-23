@@ -58,9 +58,13 @@ export const store = new Vuex.Store(
                     price: 200,
                     img: "../assets/red-dress.jpg"
                 },
-            }
+            },
 
-
+        orders:[]
+        },
+        getters:{
+            getStockItems:state => state.stockItems,
+            numberOfOrders:state => state.orders.length
         }
     }
 )

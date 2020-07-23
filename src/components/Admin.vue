@@ -35,7 +35,7 @@
 
         <div class="order-wrapper">
 
-            <h4>Current orders</h4>
+            <h4>Current orders ({{numberOfOrders}})</h4>
             <md-table>
                 <md-table-row>
                     <md-table-head>order id</md-table-head>
@@ -94,7 +94,10 @@
         },
         computed:{
                     getStockItems() {
-                    return this.$store.state.stockItems;
+                    return this.$store.getters.getStockItems;
+                    },
+                    numberOfOrders(){
+                       return this.$store.getters.numberOfOrders
                     }
             },
 
