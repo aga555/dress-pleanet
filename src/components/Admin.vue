@@ -2,7 +2,7 @@
     <div class="admin-wrapper">
         <div class="current-user">
             <span> Logged in as : </span>
-<md-button @click="signOut">signOut</md-button>
+            <md-button @click="signOut">signOut</md-button>
             <new-dress></new-dress>
         </div>
 
@@ -93,7 +93,7 @@
             </md-table>
         </div>
 
-<login></login>
+        <login></login>
     </div>
 </template>
 
@@ -104,18 +104,23 @@
 
     export default {
         name: "Admin",
+
+
+
         components: {
             newDress: NewDress,
             login: Login
         },
+
+
         methods: {
             async signOut() {
 
                 try {
-            await firebaseAuth.signOut()
+                    await firebaseAuth.signOut()
                     alert('sign out ok ')
                 } catch (error) {
-                    alert('error signing out , ${error}' )
+                    alert('error signing out , ${error}')
 
                 }
             }

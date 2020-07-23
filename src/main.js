@@ -38,6 +38,7 @@ const routers = [
     },
     {path: '/menu', name: 'stockLink', component: Menu},
     {path: '/contact', component: Contact},
+
     {
         path: '/about', component: AboutUs,
         children: [
@@ -47,7 +48,14 @@ const routers = [
 
         ]
     },
-    {path: '/admin', component: Admin},
+    {
+        path: '/admin',
+        component: Admin,
+        beforeEnter:(to,from,next)=>{
+            alert(' this area is only for administrator')
+            next()
+        }
+    },
     {path: '/login', component: Login},
     {path: '/newDress', component: NewDress},
     {path: '*', redirect: '/home'}
@@ -61,10 +69,6 @@ const router = new VueRouter({
     mode: 'history'
 });
 
-router.beforeEach((to, form, next) => {
-
-    next()
-})
 
 Vue.use(MdField);
 Vue.use(VueMaterial);
