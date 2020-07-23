@@ -18,7 +18,7 @@
                 </router-link>
 
 
-                <router-link to='/menu' tag="li">
+                <router-link :to="{name: 'stackLink'}" tag="li">
                     <a> menu </a>
                 </router-link>
 
