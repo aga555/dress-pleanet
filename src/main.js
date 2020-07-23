@@ -51,7 +51,7 @@ const routers = [
     {
         path: '/admin',
         component: Admin,
-        beforeEnter:(to,from,next)=>{
+        beforeEnter: (to, from, next) => {
             alert(' this area is only for administrator')
             next()
         }
@@ -66,7 +66,17 @@ const routers = [
 const router = new VueRouter({
 
     routes: routers,
-    mode: 'history'
+    mode: 'history',
+    scrollBehavior(to, form, savedPosition) {
+
+    if(savedPosition)
+    {
+        return savedPosition
+    }
+    else {
+        return {x:0,y:0}
+    }
+    }
 });
 
 

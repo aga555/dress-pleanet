@@ -18,7 +18,7 @@
                 </router-link>
 
 
-                <router-link :to="{name: 'stackLink'}" tag="li">
+                <router-link :to="{name: 'stockLink'}" tag="li">
                     <a> menu </a>
                 </router-link>
 
