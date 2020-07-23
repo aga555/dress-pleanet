@@ -1,10 +1,10 @@
 <template>
     <div id="app">
-        <app-header></app-header>
-        <app-home></app-home>
-       <!-- <app-menu></app-menu>
--->
-        <app-admin></app-admin>
+
+ <app-header></app-header>
+
+
+        <router-view></router-view>
     <md-button class="md-icon-button">
         <md-icon>home</md-icon>
     </md-button>
@@ -14,18 +14,14 @@
 <script>
 
 
-    import Home from "@/components/Home";
-
-    import Admin from "@/components/Admin";
     import Header from "@/components/Header";
 
     export default {
         name: 'App',
         components: {
-            appHeader: Header,
-            appHome: Home,
-          //  appMenu: Menu,
-            appAdmin: Admin
+
+           appHeader: Header
+
 
         }
     }

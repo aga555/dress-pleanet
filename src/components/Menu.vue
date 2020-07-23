@@ -2,9 +2,9 @@
     <div class="menu-wrapper">
         <!--menu-->
         <div class="menu">
-            <md-layout md-flex="50" v-for="(item) in getMenuItems" :key="item.id">
+            <md-card md-flex="50" v-for="(item) in getMenuItems" :key="item.id">
 
-                <md-card>
+
                     <md-card-media>
 
                     </md-card-media>
@@ -25,8 +25,8 @@
                     <md-card-content>
                      {{item.description}}
                     </md-card-content>
-                </md-card>
-            </md-layout>
+
+            </md-card>
 
 
         </div>

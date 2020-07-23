@@ -2,33 +2,44 @@
     <header>
         <div  class="row col-sm-12">
             <img src="../assets/super-dress-logo.png" class="header-logo" alt="logo">
-            <h1 href="/"> super dress </h1>
+            <h1> super dress </h1>
         </div>
 
     <nav>
         <ul>
             <li>
-                <a href="/home"> home </a>
-            </li>
-            <span> ~</span>
-            <li>
-                <a href="/contact"> contact </a>
-            </li>
-            <span> ~</span>
-            <li>
-                <a href="/menu"> menu</a>
-            </li>
-            <span> ~</span>
-            <li>
-                <a href="/about"> about us </a>
+                <router-link to='/home'>
+                <a> home </a>
+                </router-link>
             </li>
 
+
+            <li>
+                <router-link to='/contact'>
+                <a > contact </a>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to ='/menu'>
+                    <a > menu </a>
+                </router-link>
+
+            </li>
+
+            <li>
+                <router-link to='/about'>
+                    <a > about </a>
+                </router-link>
+            </li>
+-->
         </ul>
     </nav>
     </header>
 </template>
 
 <script>
+
     export default {
         name: "Header"
     }
