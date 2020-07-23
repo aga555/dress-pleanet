@@ -3,14 +3,19 @@
         <div class="background-overlay">
 
             <h3> Ready for shopping ? </h3>
-            <button class="shopping-button">Lets order</button>
+            <button class="shopping-button" @click="goToStock">Lets order</button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Home"
+        name: "Home",
+        methods: {
+            goToStock(){
+                this.$router.push({name:'stockLink'})
+            }
+        }
     }
 </script>
 
