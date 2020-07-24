@@ -139,7 +139,8 @@
                 //   this.$store.commit('addOrder',this.basket);
                 this.basket = [];
                 this.basketText = "Thank You, your order has been placed."
-            }
+            },
+
         },
 
 

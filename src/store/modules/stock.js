@@ -19,7 +19,17 @@ const actions = {
             await dbStockRef.add(dress)
         }
         catch (eroor) {
-                        alert('Error creatin new dress, ${error}')
+            alert('Error creatin new dress, ${error}')
+        }
+    },
+    removeStockItem: async (context, id)=>{
+        try{
+            const item = await dbStockRef.doc(id);
+            item.delete();
+            alert('delete item')
+        }
+        catch (error) {
+            alert( 'ups! smoething went wrong, ${error}')
         }
     }
 

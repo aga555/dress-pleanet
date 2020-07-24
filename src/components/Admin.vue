@@ -26,7 +26,7 @@
                     <md-table-cell>{{item.name}}</md-table-cell>
                     <md-table-cell>{{item.price}}</md-table-cell>
                     <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary">
+                        <md-button @click="removeStockItem(item.id)" class="md-icon-button md-dense md-raised md-primary">
                             <md-icon>cached</md-icon>
                         </md-button>
                     </md-table-cell>
@@ -63,6 +63,11 @@
                         <md-table-cell >  {{item.quantity}}
                         </md-table-cell>
                         <md-table-cell >  {{item.size}}
+                        </md-table-cell>
+                        <md-table-cell>
+                            <md-button @click="removeOrder(order.id)" class="md-icon-button md-dense md-raised md-primary">
+                                <md-icon>cached</md-icon>
+                            </md-button>
                         </md-table-cell>
 
 
@@ -104,8 +109,12 @@
         methods: {
             async signOut() {
                 store.dispatch('signOut')
-
-
+            },
+            removeStockItem(id){
+                store.dispatch('removeStockItem',id)
+            },
+            removeOrder(id){
+                store.dispatch('removeOrder',id)
             }
         }
     }
