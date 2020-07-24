@@ -16,6 +16,7 @@
      import 'vue-material/dist/theme/default.css'
 
     import Header from "@/components/Header";
+     import {dbStockRef} from "./Firebase";
 
     export default {
         name: 'App',
@@ -23,7 +24,9 @@
 
            appHeader: Header
 
-
+        },
+        created ( ){
+            this.$store.dispatch('setStockRef',dbStockRef)
         }
     }
 </script>
