@@ -6,7 +6,7 @@
 
         <router-view></router-view>
     <md-button class="md-icon-button">
-        <md-icon>home</md-icon>
+
     </md-button>
     </div>
 </template>

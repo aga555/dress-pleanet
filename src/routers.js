@@ -9,6 +9,7 @@ import Guide from "@/components/Guide";
 import History from "@/components/History";
 import Delivery from "@/components/Delivery";
 import Stock from "@/components/Stock";
+import DressDetail from "@/components/DressDetail";
 
 export const routers = [
     {
@@ -38,6 +39,7 @@ export const routers = [
     },
     {path: '/login', component: Login},
     {path: '/newDress', component: NewDress},
-    {path: '*', redirect: '/home'}
+    {path: '*', redirect: '/home'},
+    { path: '/details/:id',  name: 'details',component: DressDetail }
 
 ];

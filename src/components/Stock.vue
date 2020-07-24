@@ -11,7 +11,7 @@
                 </md-card-media>
 
                 <md-card-header>
-                    <div class="md-title"> {{item.name }}</div>
+                    <div class="md-title"  @click="goToDetail(item.id) "> {{item.name }}</div>
 
                     <div class="md-subhead">{{item.price}}</div>
 
@@ -108,6 +108,9 @@
             }
         },
         methods: {
+            goToDetail(id){
+                this.$router.push({name:'details',params:{id:id}})
+            },
             async addToBasket(item, option) {
                 const dressExist = await this.basket.find(
                     dress => dress.name === item.name && dress.size === option.size
@@ -149,6 +152,9 @@
 </script>
 
 <style scoped>
+    .md-title{
+        cursor: pointer;
+    }
     .md-card {
         width: 320px;
         margin: 4px;
