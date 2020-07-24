@@ -11,7 +11,7 @@
                 </md-card-media>
 
                 <md-card-header>
-                    <div class="md-title"  @click="goToDetail(item.id) "> {{item.name }}</div>
+                    <div class="md-title" @click="goToDetail(item.id) "> {{item.name }}</div>
 
                     <div class="md-subhead">{{item.price}}</div>
 
@@ -80,8 +80,9 @@
 
 <script>
     import {mapGetters} from "vuex"
+    import {store} from "../store/store";
 
-   export default {
+    export default {
         name: "Stock",
         data: function () {
             return {
@@ -97,8 +98,8 @@
 
         },
         methods: {
-            goToDetail(id){
-                this.$router.push({name:'details',params:{id:id}})
+            goToDetail(id) {
+                this.$router.push({name: 'details', params: {id: id}})
             },
             async addToBasket(item, option) {
                 const dressExist = await this.basket.find(
@@ -130,7 +131,12 @@
             },
             addNewOrder() {
 
-                this.$store.commit('addOrder',this.basket);
+                const order = {
+                    items: {...this.basket},
+                    createdAt: new Date()
+                }
+                store.dispatch('addNewOrder', order)
+                //   this.$store.commit('addOrder',this.basket);
                 this.basket = [];
                 this.basketText = "Thank You, your order has been placed."
             }
@@ -141,9 +147,10 @@
 </script>
 
 <style scoped>
-    .md-title{
+    .md-title {
         cursor: pointer;
     }
+
     .md-card {
         width: 320px;
         margin: 4px;

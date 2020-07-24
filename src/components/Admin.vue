@@ -20,8 +20,8 @@
 
                 </md-table-row>
 
+                <md-table-row md-flex="50" v-for="item in getStockItems" :key="item.id">
 
-                <md-table-row v-for="item in getStockItems" :key="item.id">
                     <md-table-cell> {{item.id}}</md-table-cell>
                     <md-table-cell>{{item.name}}</md-table-cell>
                     <md-table-cell>{{item.price}}</md-table-cell>
@@ -31,8 +31,8 @@
                         </md-button>
                     </md-table-cell>
                 </md-table-row>
-            </md-table>
 
+</md-table>
         </div>
 
 
@@ -41,39 +41,35 @@
             <h4>Current orders ({{numberOfOrders}})</h4>
             <md-table>
                 <md-table-row>
-                    <md-table-head>order id</md-table-head>
-                    <md-table-head>item name</md-table-head>
-                    <md-table-head>Price</md-table-head>
-                    <md-table-head>Quantity</md-table-head>
-                    <md-table-head>size</md-table-head>
-                    <md-table-head>Completed</md-table-head>
+                <md-table-head>order id</md-table-head>
+                <md-table-head>item name</md-table-head>
+                <md-table-head>Price</md-table-head>
+                <md-table-head>Quantity</md-table-head>
+                <md-table-head>size</md-table-head>
+                <md-table-head>Completed</md-table-head>
+                </md-table-row>
+                <md-table-row md-flex="50" v-for="(order,index) in getOrders" :key="order.id">
+                    <md-table-cell >{{index +1}}
+                      </md-table-cell>
+
+                    <md-table-row  v-for="(item) in order.items" :key="item.id">
+
+
+                        <md-table-cell >  {{item.name }}
+                            </md-table-cell>
+
+                        <md-table-cell >  {{item.price}}
+                        </md-table-cell>
+                        <md-table-cell >  {{item.quantity}}
+                        </md-table-cell>
+                        <md-table-cell >  {{item.size}}
+                        </md-table-cell>
+
+
+                    </md-table-row>
 
                 </md-table-row>
 
-                <md-table-row>
-                    <md-table-cell md-numeric>1</md-table-cell>
-                    <md-table-cell>Red dress</md-table-cell>
-                    <md-table-cell> 200</md-table-cell>
-                    <md-table-cell>1</md-table-cell>
-                    <md-table-cell>38</md-table-cell>
-                    <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary">
-                            <md-icon>done</md-icon>
-                        </md-button>
-                    </md-table-cell>
-                </md-table-row>
-                <md-table-row>
-                    <md-table-cell md-numeric>2</md-table-cell>
-                    <md-table-cell>Black dress</md-table-cell>
-                    <md-table-cell> 200</md-table-cell>
-                    <md-table-cell>2</md-table-cell>
-                    <md-table-cell>40</md-table-cell>
-                    <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary">
-                            <md-icon>done</md-icon>
-                        </md-button>
-                    </md-table-cell>
-                </md-table-row>
             </md-table>
         </div>
 
@@ -96,9 +92,11 @@
             login: Login
         },
         computed: {
-
             ...mapGetters([
-                'geMenuItems', ' numberOfOrders','currentUser'
+                'getStockItems',
+                ' numberOfOrders',
+                'currentUser',
+                'getOrders'
             ])
 
         },

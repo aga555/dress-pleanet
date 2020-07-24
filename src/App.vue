@@ -17,6 +17,7 @@
 
     import Header from "@/components/Header";
      import {dbStockRef} from "./Firebase";
+     import {dbOrdersRef} from "./Firebase";
 
     export default {
         name: 'App',
@@ -27,6 +28,7 @@
         },
         created ( ){
             this.$store.dispatch('setStockRef',dbStockRef)
+            this.$store.dispatch('setOrdersRef',dbOrdersRef)
         }
     }
 </script>
