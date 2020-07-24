@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
-import {firebaseAuth} from "../Firebase";
+import * as actions from './actions'
+import * as mutations from './mutations'
+import * as getters from './getters'
 
 Vue.use(Vuex)
 
@@ -72,53 +74,8 @@ export const store = new Vuex.Store(
             orders: [],
             currentUser: '',
         },
-        getters: {
-            getStockItems: state => state.stockItems,
-            numberOfOrders: state => state.orders.length,
-            currentUser: state => state.currentUser
-        },
-
-        mutations: {
-            addOrder: (state, orders) => state.orders.push(orders),
-            userStatus: (state, user) => {
-                /*if (user) {
-                    state.currentUser = user
-                } else {
-                    state.currentUser = null
-                }*/
-                user === null
-                    ? state.currentUser = null
-                    : state.currentUser = user.email
-
-            }
-        },
-        actions:
-            {
-                signIn: async ({commit}, user) => {
-                    try {
-                        const userData = await firebaseAuth.signInWithEmailAndPassword(user.email, user.password);
-                        commit('userStatus', userData.user);
-                        alert('log ok')
-                    } catch (error) {
-                        const errorCode = error.code;
-                        const errorMess = error.message;
-                        if (errorCode === 'auth/wrong-password') {
-                            alert('wrong password')
-                        } else {
-                            alert(errorMess)
-                            console.log(this.form.email, this.form.password)
-                        }
-                    }
-                },
-              signOut: async({commit}) => {
-                    try {
-                        await firebaseAuth.signOut()
-                             alert('sign out ok ')
-                    } catch (error) {
-                             alert('error signing out , ${error}')
-                    }
-                    commit('userStatus',null)
-                }
-            }
+        getters,
+        mutations,
+        actions
     },
 )

@@ -12,7 +12,8 @@
 </template>
 
 <script>
-
+     import 'vue-material/dist/vue-material.min.css'
+     import 'vue-material/dist/theme/default.css'
 
     import Header from "@/components/Header";
 
