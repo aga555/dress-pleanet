@@ -1,7 +1,7 @@
 <template>
     <div class="admin-wrapper">
         <div class="current-user">
-            <span> Logged in as : </span>
+            <span> Logged in as {{currentUser}}  </span>
             <md-button @click="signOut">signOut</md-button>
             <new-dress></new-dress>
         </div>
@@ -10,25 +10,28 @@
             <h4> stock </h4>
 
 
+            <md-table>
+                <md-table-row>
 
-    <md-table >
-   <md-table-row>
+                    <md-table-head>id</md-table-head>
+                    <md-table-head>Name</md-table-head>
+                    <md-table-head>Price</md-table-head>
+                    <md-table-head>Remove</md-table-head>
 
-            <md-table-head>id</md-table-head>
-            <md-table-head>Name</md-table-head>
-            <md-table-head>Price</md-table-head>
-            <md-table-head>Remove</md-table-head>
-
-        </md-table-row>
+                </md-table-row>
 
 
-            <md-table-row v-for="item in getStockItems" :key="item.id">
-                    <md-table-cell > {{item.id}}</md-table-cell>
+                <md-table-row v-for="item in getStockItems" :key="item.id">
+                    <md-table-cell> {{item.id}}</md-table-cell>
                     <md-table-cell>{{item.name}}</md-table-cell>
                     <md-table-cell>{{item.price}}</md-table-cell>
-                    <md-table-cell><md-button class="md-icon-button md-dense md-raised md-primary"><md-icon>cached</md-icon></md-button></md-table-cell>
-            </md-table-row>
-        </md-table>
+                    <md-table-cell>
+                        <md-button class="md-icon-button md-dense md-raised md-primary">
+                            <md-icon>cached</md-icon>
+                        </md-button>
+                    </md-table-cell>
+                </md-table-row>
+            </md-table>
 
         </div>
 
@@ -81,39 +84,37 @@
 <script>
     import NewDress from "@/components/NewDress";
     import Login from "@/components/Login";
-    import {firebaseAuth} from "@/Firebase";
+import {store} from "../store/store";
 
     export default {
         name: "Admin",
-
 
 
         components: {
             newDress: NewDress,
             login: Login
         },
-        computed:{
-                    getStockItems() {
-                    return this.$store.getters.getStockItems;
-                    },
-                    numberOfOrders(){
-                       return this.$store.getters.numberOfOrders
-                    }
+        computed: {
+            getStockItems() {
+                return this.$store.getters.getStockItems;
             },
+            numberOfOrders() {
+                return this.$store.getters.numberOfOrders
+            },
+            currentUser() {
+                return this.$store.getters.currentUser
+            }
+        },
 
         methods: {
             async signOut() {
+                store.dispatch('signOut')
 
-                try {
-                    await firebaseAuth.signOut()
-                    alert('sign out ok ')
-                } catch (error) {
-                    alert('error signing out , ${error}')
 
-                }
             }
         }
     }
+
 </script>
 
 <style scoped>
