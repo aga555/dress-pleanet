@@ -15,9 +15,9 @@
 
                     <div class="md-subhead">{{item.price}}</div>
 
-                    <div class="md-subhead" v-for="(option,index) in item.options" :key="option[index]"> size:
-                        {{option.size}}
-                        <md-button @click="addToBasket(item, option)">
+                    <div class="md-subhead" v-for="(size,index) in item.size" :key="size[index]"> size:
+                        {{size}}
+                        <md-button @click="addToBasket(item, size)">
                             <md-icon>add</md-icon>
                         </md-button>
 
@@ -39,33 +39,58 @@
             <h3> Basket </h3>
             <div v-if="basket.length>0">
 
-                <md-list class="md-triple-line" v-for="(item,index) in basket" :key="basket[index]">
+                <md-table  >
+                    <md-table-row>
+                    <md-table-head> dress name</md-table-head>
+                    <md-table-head> size</md-table-head>
+                    <md-table-head>price </md-table-head>
+                    <md-table-head>cost </md-table-head>
+                    <md-table-head>quantity </md-table-head>
+                    <md-table-head>remove</md-table-head>
+                    </md-table-row>
 
-                    <md-list-item>
-
-                        <div class="md-title">{{item.name}}</div>
-                        <div class="md-subhead">{{item.size}}</div>
-                        <div class="md-subhead">{{item.price}}</div>
-                        <div class="md-subhead">{{item.price*item.quantity}}</div>
+                    <md-table-row v-for="(item,index) in basket" :key="basket[index]">
+                    <md-table-cell>{{item.name}}</md-table-cell>
+                    <md-table-cell>{{item.size}}</md-table-cell>
+                    <md-table-cell>{{item.price}}</md-table-cell>
+                    <md-table-cell>{{item.price*item.quantity}}</md-table-cell>
+                    <md-table-cell>
 
                         <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
-                            <md-icon class="md-primary">add</md-icon>
-                        </md-button>
-
-                        <div class="md-subhead">{{item.quantity}}</div>
+                        <md-icon class="md-primary">add</md-icon>
+                    </md-button>
+                        <span >{{item.quantity}}</span>
                         <md-button class="md-icon-button md-list-action" style="align-self: center"
                                    @click="decreaseQuantity(item)">
 
                             <md-icon class="md-primary">remove</md-icon>
                         </md-button>
+
+                    </md-table-cell>
+                    <md-table-cell>
                         <md-button class="md-icon-button md-dense md-raised md-primary" @click="removeFomBasket(item)">
-                            <md-icon>cached</md-icon>
-                        </md-button>
-                    </md-list-item>
+                        <md-icon>cached</md-icon>
+                    </md-button>
+                    </md-table-cell>
+                    </md-table-row>
 
-                    <hr>
 
-                </md-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </md-table>
                 <h4> Total cost </h4>
                 <md-button class="md-primary" @click="addNewOrder">order</md-button>
             </div>
@@ -101,9 +126,9 @@
             goToDetail(id) {
                 this.$router.push({name: 'details', params: {id: id}})
             },
-            async addToBasket(item, option) {
+            async addToBasket(item, size) {
                 const dressExist = await this.basket.find(
-                    dress => dress.name === item.name && dress.size === option.size
+                    dress => dress.name === item.name && dress.size === size
                 );
                 if (dressExist) {
                     dressExist.quantity++;
@@ -112,12 +137,15 @@
                 this.basket.push({
                     name: item.name,
                     price: item.price,
-                    size: option.size,
+                    size: size,
                     quantity: 1,
                 })
             },
             decreaseQuantity(item) {
-                item.quantity--
+                item.quantity--;
+                if (item.quantity === 0) {
+                    this.removeFomBasket(item)
+                }
             },
 
             increaseQuantity(item) {
