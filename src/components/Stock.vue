@@ -71,7 +71,7 @@
             </div>
             <div v-else>
                 <p> {{basketText}}</p>
-          {{this.$store.state.orders}}
+
             </div>
 
         </div>
@@ -79,17 +79,9 @@
 </template>
 
 <script>
+    import {mapGetters} from "vuex"
 
-/*    class Item {
-        constructor(name, img , price) {
-              this.name=name;
-        this.img =img;
-        this.price=price
-        }
-
-    }*/
-
-        import 'vue-material/dist/vue-material.min.css'
+    import 'vue-material/dist/vue-material.min.css'
     import 'vue-material/dist/theme/default.css'
 
 
@@ -103,9 +95,10 @@
             }
         },
         computed: {
-            getStockItems() {
-                return this.$store.getters.getStockItems
-            }
+            ...mapGetters([
+                'geMenuItems'
+            ])
+
         },
         methods: {
             goToDetail(id){

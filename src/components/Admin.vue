@@ -84,7 +84,8 @@
 <script>
     import NewDress from "@/components/NewDress";
     import Login from "@/components/Login";
-import {store} from "../store/store";
+    import {store} from "../store/store";
+    import {mapGetters} from "vuex"
 
     export default {
         name: "Admin",
@@ -95,15 +96,11 @@ import {store} from "../store/store";
             login: Login
         },
         computed: {
-            getStockItems() {
-                return this.$store.getters.getStockItems;
-            },
-            numberOfOrders() {
-                return this.$store.getters.numberOfOrders
-            },
-            currentUser() {
-                return this.$store.getters.currentUser
-            }
+
+            ...mapGetters([
+                'geMenuItems', ' numberOfOrders','currentUser'
+            ])
+
         },
 
         methods: {
