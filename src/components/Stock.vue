@@ -3,7 +3,7 @@
         <!--menu-->
 
         <div class="menu">
-            <md-card md-flex="50" v-for="(item) in getStockItems" :key="item.id">
+            <md-card md-flex="50" v-for="item in getStockItems" :key="item.id">
 
 
                 <md-card-media>
@@ -14,6 +14,7 @@
                     <div class="md-title"> {{item.name }}</div>
 
                     <div class="md-subhead">{{item.price}}</div>
+
                     <div class="md-subhead" v-for="(option,index) in item.options" :key="option[index]"> size:
                         {{option.size}}
                         <md-button @click="addToBasket(item, option)">
@@ -78,7 +79,17 @@
 </template>
 
 <script>
-    import 'vue-material/dist/vue-material.min.css'
+
+/*    class Item {
+        constructor(name, img , price) {
+              this.name=name;
+        this.img =img;
+        this.price=price
+        }
+
+    }*/
+
+        import 'vue-material/dist/vue-material.min.css'
     import 'vue-material/dist/theme/default.css'
 
 
