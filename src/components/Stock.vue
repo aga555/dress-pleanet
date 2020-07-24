@@ -92,7 +92,7 @@
         },
         computed: {
             ...mapGetters([
-                'geMenuItems'
+                'getStockItems'
             ])
 
         },
