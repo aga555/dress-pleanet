@@ -147,7 +147,18 @@
                 store.dispatch('removeOrder', id)
             },
 
+        },
+        beforeRouteLeave: (to, from,next) => {
+            if (confirm( "You will be logged out  when leaving admin") ==true)
+            {
+                store.dispatch('signOut')
+                next()
+
+            } else {
+                next(false)
+            }
         }
+
     }
 </script>
 

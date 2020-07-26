@@ -33,17 +33,17 @@ import {store} from "../store/store";
 import {mapGetters} from "vuex";
 
 export default {
-        name: "Login",
+    name: "Login",
 
     data() {
-            return {
+        return {
 
-                email: '',
-                password: ''
-                ,
+            email: '',
+            password: ''
+            ,
 
-            }
-        },computed: {
+        }
+    }, computed: {
         ...mapGetters([
             'getStockItems',
             'numberOfOrders',
@@ -53,17 +53,21 @@ export default {
         ])
 
     },
-        methods: {
-            signIn() {
-                const user = {
-                    email: this.email,
-                    password: this.password
-                }
-                store.dispatch('signIn', user)
+    methods: {
+        signIn() {
+            const user = {
+                email: this.email,
+                password: this.password
             }
-
+            store.dispatch('signIn', user)
         }
-    }
+
+    },
+
+}
+
+
+
 
 </script>
 
