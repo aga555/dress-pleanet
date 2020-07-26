@@ -13,7 +13,7 @@
                 <md-card-header>
                     <div class="md-title" @click="goToDetail(item.id) "> {{item.name }}</div>
 
-                    <div class="md-subhead">{{item.price}}</div>
+                    <div class="md-subhead">{{item.price|currency}}</div>
 
                     <div class="md-subhead" v-for="(size,index) in item.size" :key="size[index]"> size:
                         {{size}}
@@ -52,8 +52,8 @@
                     <md-table-row v-for="(item,index) in basket" :key="basket[index]">
                         <md-table-cell>{{item.name}}</md-table-cell>
                         <md-table-cell>{{item.size}}</md-table-cell>
-                        <md-table-cell>{{item.price}}</md-table-cell>
-                        <md-table-cell>{{item.price*item.quantity}}</md-table-cell>
+                        <md-table-cell>{{item.price|currency}}</md-table-cell>
+                        <md-table-cell>{{item.price*item.quantity|currency}}</md-table-cell>
                         <md-table-cell>
 
                             <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
@@ -75,7 +75,7 @@
                         </md-table-cell>
                     </md-table-row>
                 </md-table>
-                <h4> Total cost : {{total}} </h4>
+                <h4> Total cost : {{total|currency}} </h4>
                 <md-button class="md-primary" @click="addNewOrder">order</md-button>
             </div>
             <div v-else>

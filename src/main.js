@@ -8,6 +8,7 @@ import 'vue-material/dist/theme/default.css'
 import {routers} from "./routers";
 import {store} from "./store/store";
 import VueRouter from "vue-router";
+import Accounting from  "accounting-js"
 Vue.config.productionTip = false
 
 Vue.use(MdButton);
@@ -39,7 +40,7 @@ const router = new VueRouter({
     }
     }
 });
-
+Vue.filter('currency', val =>  Accounting.formatMoney(val));
 
 Vue.use(MdField);
 Vue.use(VueMaterial);

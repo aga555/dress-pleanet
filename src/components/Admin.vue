@@ -30,7 +30,7 @@
 
                         <md-table-cell> {{item.id}}</md-table-cell>
                         <md-table-cell>{{item.name}}</md-table-cell>
-                        <md-table-cell>{{item.price}}</md-table-cell>
+                        <md-table-cell>{{item.price|currency}}</md-table-cell>
                         <md-table-cell>
                             <md-button @click="removeStockItem(item.id)"
                                        class="md-icon-button md-dense md-raised md-primary">
@@ -77,7 +77,7 @@
                             </md-table-cell>
                             <md-table-cell>
 
-                                {{single.price}}
+                                {{single.price|currency}}
                             </md-table-cell>
                             <md-table-cell>
 
