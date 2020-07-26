@@ -10,7 +10,7 @@
             </div>
 
 
-            <div class="stock-wrapper" v-if="currentUser !== null">
+            <div class="stock-wrapper">
 
 
                 <h4> stock ( {{getStockItems.length}}
@@ -105,7 +105,6 @@
 
             </div>
         </section>
-        <login></login>
         <new-dress></new-dress>
     </div>
 </template>
@@ -114,16 +113,14 @@
     import NewDress from "@/components/NewDress";
     import {store} from "../store/store";
     import {mapGetters} from "vuex"
-    import Login from "@/components/Login";
+
 
     export default {
         name: "Admin",
         currentUser: '',
 
         components: {
-            Login,
-
-            newDress: NewDress,
+           newDress: NewDress,
 
         },
         computed: {
@@ -148,9 +145,8 @@
             },
 
         },
-        beforeRouteLeave: (to, from,next) => {
-            if (confirm( "You will be logged out  when leaving admin") ==true)
-            {
+        beforeRouteLeave: (to, from, next) => {
+            if (confirm("You will be logged out  when leaving admin") == true) {
                 store.dispatch('signOut')
                 next()
 
@@ -160,6 +156,8 @@
         }
 
     }
+
+
 </script>
 
 <style scoped>

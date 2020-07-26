@@ -25,13 +25,7 @@
             </md-tab>
             <md-tab id="tab-login" md-label="login " to='/login'> </md-tab>
 
-            <md-tab id="tab-admin" md-label="admin " to='/admin'>
-                <md-list>
-                <md-list-item id="stock" md-label="stock" > </md-list-item>
-                <md-list-item id="orders" md-label="orders" > </md-list-item>
-                <md-list-item id="newDress" md-label="newDress" > </md-list-item>
-                </md-list>
-            </md-tab>
+
 
 
 

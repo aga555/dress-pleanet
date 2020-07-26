@@ -40,8 +40,6 @@ export default {
 
             email: '',
             password: ''
-            ,
-
         }
     }, computed: {
         ...mapGetters([
@@ -59,13 +57,14 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            store.dispatch('signIn', user)
-        }
+            store.dispatch('signIn', user).then(() => {
+                this.$router.push('/admin')
+            })
 
-    },
+        },
 
+    }
 }
-
 
 
 
