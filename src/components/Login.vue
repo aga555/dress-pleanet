@@ -1,4 +1,7 @@
 <template>
+    <div>
+
+
     <form novalidate class="md-layout">
         <md-card class="md-layout-item md-size-50 md-small-size-100">
             <md-card-header>
@@ -18,15 +21,21 @@
             <md-button class="md-active" @click.prevent="signIn">sign in</md-button>
         </md-card>
     </form>
+
+
+    </div>
 </template>
 
 <script>
 
 import {store} from "../store/store";
 
+import {mapGetters} from "vuex";
+
 export default {
         name: "Login",
-        data() {
+
+    data() {
             return {
 
                 email: '',
@@ -34,15 +43,23 @@ export default {
                 ,
 
             }
-        },
+        },computed: {
+        ...mapGetters([
+            'getStockItems',
+            'numberOfOrders',
+            'currentUser',
+            'getOrders',
+
+        ])
+
+    },
         methods: {
             signIn() {
                 const user = {
                     email: this.email,
                     password: this.password
                 }
-                store.dispatch('signIn', user
-                )
+                store.dispatch('signIn', user)
             }
 
         }

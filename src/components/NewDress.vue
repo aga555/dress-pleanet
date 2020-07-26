@@ -44,6 +44,7 @@
 
                 </md-field>
 
+
             </md-card-content>
 
             {{newDress}}
@@ -58,9 +59,11 @@
 <script>
     import {store} from "../store/store";
 
+
     export default {
         name: "NewDressAdd",
         data: function () {
+
             return {
 
                 newDress: {
@@ -70,11 +73,18 @@
                     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
                     size: [],
                     price: '',
+                    img:''
                     //url: '../assets/dress-green.jpg'
                     //  url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
                 },
 
             }
+        },
+       /* created(){
+            this.newDress.id=  Math.random().toString(36).substring(7);
+        },*/
+        components: {
+
         },
         methods: {
             add() {
@@ -84,6 +94,7 @@
         }
 
     }
+
 </script>
 
 <style scoped>

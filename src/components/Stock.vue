@@ -39,59 +39,43 @@
             <h3> Basket </h3>
             <div v-if="basket.length>0">
 
-                <md-table  >
+                <md-table>
                     <md-table-row>
-                    <md-table-head> dress name</md-table-head>
-                    <md-table-head> size</md-table-head>
-                    <md-table-head>price </md-table-head>
-                    <md-table-head>cost </md-table-head>
-                    <md-table-head>quantity </md-table-head>
-                    <md-table-head>remove</md-table-head>
+                        <md-table-head> dress name</md-table-head>
+                        <md-table-head> size</md-table-head>
+                        <md-table-head>price</md-table-head>
+                        <md-table-head>cost</md-table-head>
+                        <md-table-head>quantity</md-table-head>
+                        <md-table-head>remove</md-table-head>
                     </md-table-row>
 
                     <md-table-row v-for="(item,index) in basket" :key="basket[index]">
-                    <md-table-cell>{{item.name}}</md-table-cell>
-                    <md-table-cell>{{item.size}}</md-table-cell>
-                    <md-table-cell>{{item.price}}</md-table-cell>
-                    <md-table-cell>{{item.price*item.quantity}}</md-table-cell>
-                    <md-table-cell>
+                        <md-table-cell>{{item.name}}</md-table-cell>
+                        <md-table-cell>{{item.size}}</md-table-cell>
+                        <md-table-cell>{{item.price}}</md-table-cell>
+                        <md-table-cell>{{item.price*item.quantity}}</md-table-cell>
+                        <md-table-cell>
 
-                        <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
-                        <md-icon class="md-primary">add</md-icon>
-                    </md-button>
-                        <span >{{item.quantity}}</span>
-                        <md-button class="md-icon-button md-list-action" style="align-self: center"
-                                   @click="decreaseQuantity(item)">
+                            <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
+                                <md-icon class="md-primary">add</md-icon>
+                            </md-button>
+                            <span>{{item.quantity}}</span>
+                            <md-button class="md-icon-button md-list-action" style="align-self: center"
+                                       @click="decreaseQuantity(item)">
 
-                            <md-icon class="md-primary">remove</md-icon>
-                        </md-button>
+                                <md-icon class="md-primary">remove</md-icon>
+                            </md-button>
 
-                    </md-table-cell>
-                    <md-table-cell>
-                        <md-button class="md-icon-button md-dense md-raised md-primary" @click="removeFomBasket(item)">
-                        <md-icon>cached</md-icon>
-                    </md-button>
-                    </md-table-cell>
+                        </md-table-cell>
+                        <md-table-cell>
+                            <md-button class="md-icon-button md-dense md-raised md-primary"
+                                       @click="removeFomBasket(item)">
+                                <md-icon>cached</md-icon>
+                            </md-button>
+                        </md-table-cell>
                     </md-table-row>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </md-table>
-                <h4> Total cost </h4>
+                <h4> Total cost : {{total}} </h4>
                 <md-button class="md-primary" @click="addNewOrder">order</md-button>
             </div>
             <div v-else>
@@ -119,8 +103,16 @@
         computed: {
             ...mapGetters([
                 'getStockItems'
-            ])
+            ]),
+            total() {
+                let totalCost = 0
 
+                this.basket.map(item => {
+                        totalCost += item.quantity * item.price
+                    }
+                );
+                return totalCost;
+            }
         },
         methods: {
             goToDetail(id) {

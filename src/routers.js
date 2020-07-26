@@ -32,10 +32,11 @@ export const routers = [
     {
         path: '/admin',
         component: Admin,
-        beforeEnter: (to, from, next) => {
+        children: [        {path: '/newDress', component: NewDress},]
+   /*     beforeEnter: (to, from, next) => {
             alert(' this area is only for administrator')
             next()
-        }
+        }*/
     },
     {path: '/login', component: Login},
     {path: '/newDress', component: NewDress},

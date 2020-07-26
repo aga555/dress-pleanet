@@ -20,15 +20,18 @@ const actions = {
             try {
                 const userData = await firebaseAuth.signInWithEmailAndPassword(user.email, user.password);
                 commit('userStatus', userData.user);
+
                 alert('log ok')
-            } catch (error) {
+
+            }
+            catch (error) {
                 const errorCode = error.code;
                 const errorMess = error.message;
                 if (errorCode === 'auth/wrong-password') {
                     alert('wrong password')
                 } else {
                     alert(errorMess)
-                    console.log(this.form.email, this.form.password)
+
                 }
             }
     },
