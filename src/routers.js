@@ -8,8 +8,10 @@ import Login from "@/components/Login";
 import Guide from "@/components/Guide";
 import History from "@/components/History";
 import Delivery from "@/components/Delivery";
-import Stock from "@/components/Stock";
-import DressDetail from "@/components/DressDetail";
+//import Stock from "@/components/Stock";
+const Stock =()=> import( /* webpackChunkName:"stockGroup"  */ "@/components/Stock")
+//import DressDetail from "@/components/DressDetail";
+const DressDetail =()=> import( /* webpackChunkName:"stockGroup"  */  "./components/DressDetail")
 
 export const routers = [
     {
