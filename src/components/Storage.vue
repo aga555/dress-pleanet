@@ -56,5 +56,10 @@
 </script>
 
 <style scoped>
-
+    .md-table-head-container, .md-table-head-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center !important;
+    }
 </style>

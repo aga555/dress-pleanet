@@ -55,6 +55,10 @@ export const routers = [
     {path: '/login', component: Login},
     {path: '/newDress', component: NewDress},
     {path: '*', redirect: '/home'},
-    {path: '/details/:id', name: 'details', component: DressDetail}
+    {path: '/details/:id',
+        name: 'details',
+        props:true,
+        component: DressDetail
+    }
 
 ];

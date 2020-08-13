@@ -32,6 +32,13 @@ const actions = {
         catch (error) {
             alert( 'ups! smoething went wrong, ${error}')
         }
+    },
+    loadedStockItem(state) {
+        return (dressId) => {
+            return state.getStockItems.find((item) => {
+                return item.id === dressId
+            })
+        }
     }
 
 }

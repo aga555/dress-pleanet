@@ -37,11 +37,6 @@
             <div class="menu">
                 <md-card md-flex="50" v-for="item in filtredDress" :key="item.id">
 
-                    {{item}}
-
-                    <img :src="item.url">
-
-
                     <md-card-header>
                         <div class="md-title" @click="goToDetail(item.id) "> {{item.name }}</div>
 

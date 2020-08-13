@@ -56,9 +56,14 @@
                 </md-field>
                 <md-field>
                     <label >url   </label>
-                    <md-input type="text" name="url" id="url" v-model="newDress.img.url"/>
+                    <md-input type="text" name="url" id="url" v-model="newDress.url"/>
 
                 </md-field>
+
+
+
+                    <img :src="newDress.url" height="200"/>
+
 
             </md-card-content>
 
@@ -88,9 +93,6 @@
                     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
                     size: [],
                     price: '',
-                    img: {
-                        url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
-                    },
                     category:'',
                     url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
                     //url: '../assets/dress-green.jpg'
