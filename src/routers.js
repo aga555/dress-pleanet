@@ -11,6 +11,7 @@ import Delivery from "@/components/Delivery";
 import Stock from "@/components/Stock";
 //const Stock =()=> import( /* webpackChunkName:"stockGroup"  */ "@/components/Stock")
 import DressDetail from "@/components/DressDetail";
+import FilterBox from "@/components/FilterBox";
 //const DressDetail =()=> import( /* webpackChunkName:"stockGroup"  */  "./components/DressDetail")
 
 export const routers = [
@@ -18,6 +19,11 @@ export const routers = [
         path: '/home',
         name: Home,
         component: Home
+    },
+    {
+        path: '/filter',
+        name: FilterBox,
+        component: FilterBox
     },
     {path: '/stock', name: 'stockLink', component: Stock},
     {path: '/contact', component: Contact},
@@ -34,15 +40,15 @@ export const routers = [
     {
         path: '/admin',
         component: Admin,
-        children: [        {path: '/newDress', component: NewDress},]
-   /*     beforeEnter: (to, from, next) => {
-            alert(' this area is only for administrator')
-            next()
-        }*/
+        children: [{path: '/newDress', component: NewDress},]
+        /*     beforeEnter: (to, from, next) => {
+                 alert(' this area is only for administrator')
+                 next()
+             }*/
     },
     {path: '/login', component: Login},
     {path: '/newDress', component: NewDress},
     {path: '*', redirect: '/home'},
-    { path: '/details/:id',  name: 'details',component: DressDetail }
+    {path: '/details/:id', name: 'details', component: DressDetail}
 
 ];

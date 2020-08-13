@@ -13,6 +13,7 @@ const actions = {
     setStockRef: firestoreAction(context => {
         return context.bindFirestoreRef('stockItems', dbStockRef)
     }),
+
     addStockItem: async(context, dress)=>
     {
         try{

@@ -1,88 +1,125 @@
 <template>
-    <div class="menu-wrapper">
-        <!--menu-->
 
-        <div class="menu">
-            <md-card md-flex="50" v-for="item in getStockItems" :key="item.id">
+    <div>
 
+        <div class="row col-md-12">
+            <md-button class="md-primary" @click="show()">
+                filters
+            </md-button>
+            <div v-show="showFilters">
+            <md-field>
+                <label> search perfect dress by name </label>
+                <md-input type="text" v-model="search"/>
+            </md-field>
+            <md-field>
+                <label> search perfect dress by price</label>
+                <md-input type="text" v-model="searchPrice"/>
+            </md-field>
 
-                <md-card-media>
+            <md-field>
+                <label>search perfect dress by size </label>
+                <md-select name="size" id="size" v-model="selectedSize">
+                    <md-option value=36>36</md-option>
+                    <md-option value=38>38</md-option>
+                    <md-option value=40>40</md-option>
 
-                </md-card-media>
+                </md-select>
 
-                <md-card-header>
-                    <div class="md-title" @click="goToDetail(item.id) "> {{item.name }}</div>
-
-                    <div class="md-subhead">{{item.price|currency}}</div>
-
-                    <div class="md-subhead" v-for="(size,index) in item.size" :key="size[index]"> size:
-                        {{size}}
-                        <md-button @click="addToBasket(item, size)">
-                            <md-icon>add</md-icon>
-                        </md-button>
-
-
-                    </div>
-                </md-card-header>
-
-
-                <md-card-content>
-                    {{item.description}}
-                </md-card-content>
-
-            </md-card>
-
-
+            </md-field>
+            <md-button class="md-primary" @click="clearFilters">
+                clear filters
+            </md-button>
         </div>
-        <!--shopping basket-->
-        <div class="basket-wrapper">
-            <h3> Basket </h3>
-            <div v-if="basket.length>0">
+    </div>
+        <div class="menu-wrapper">
+            <!--menu-->
 
-                <md-table>
-                    <md-table-row>
-                        <md-table-head> dress name</md-table-head>
-                        <md-table-head> size</md-table-head>
-                        <md-table-head>price</md-table-head>
-                        <md-table-head>cost</md-table-head>
-                        <md-table-head>quantity</md-table-head>
-                        <md-table-head>remove</md-table-head>
-                    </md-table-row>
+            <div class="menu">
+                <md-card md-flex="50" v-for="item in filtredDress" :key="item.id">
 
-                    <md-table-row v-for="(item,index) in basket" :key="basket[index]">
-                        <md-table-cell>{{item.name}}</md-table-cell>
-                        <md-table-cell>{{item.size}}</md-table-cell>
-                        <md-table-cell>{{item.price|currency}}</md-table-cell>
-                        <md-table-cell>{{item.price*item.quantity|currency}}</md-table-cell>
-                        <md-table-cell>
+                    {{item}}
 
-                            <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
-                                <md-icon class="md-primary">add</md-icon>
+                    <img :src="item.url">
+
+
+                    <md-card-header>
+                        <div class="md-title" @click="goToDetail(item.id) "> {{item.name }}</div>
+
+                        <div class="md-subhead">{{item.price|currency}}</div>
+
+                        <div class="md-subhead" v-for="(size,index) in item.size" :key="size[index]"> size:
+                            {{size}}
+                            <md-button @click="addToBasket(item, size)">
+                                <md-icon>add</md-icon>
                             </md-button>
-                            <span>{{item.quantity}}</span>
-                            <md-button class="md-icon-button md-list-action" style="align-self: center"
-                                       @click="decreaseQuantity(item)">
+                        </div>
+                    </md-card-header>
+                    <md-card-content>
+                        <img :src="item.url"/>
 
-                                <md-icon class="md-primary">remove</md-icon>
-                            </md-button>
+                    </md-card-content>
+                    <md-card-content>
+                        {{item.category}}
+                    </md-card-content>
+                    <md-card-content>
+                        {{item.description}}
+                    </md-card-content>
 
-                        </md-table-cell>
-                        <md-table-cell>
-                            <md-button class="md-icon-button md-dense md-raised md-primary"
-                                       @click="removeFomBasket(item)">
-                                <md-icon>cached</md-icon>
-                            </md-button>
-                        </md-table-cell>
-                    </md-table-row>
-                </md-table>
-                <h4> Total cost : {{total|currency}} </h4>
-                <md-button class="md-primary" @click="addNewOrder">order</md-button>
-            </div>
-            <div v-else>
-                <p> {{basketText}}</p>
+                </md-card>
+
 
             </div>
+            <!--shopping basket-->
+            <div class="basket-wrapper">
+                <h3> Basket </h3>
+                <div v-if="basket.length>0">
 
+                    <md-table>
+                        <md-table-row>
+                            <md-table-head> dress name</md-table-head>
+                            <md-table-head> size</md-table-head>
+                            <md-table-head>price</md-table-head>
+                            <md-table-head>cost</md-table-head>
+                            <md-table-head>quantity</md-table-head>
+                            <md-table-head>remove</md-table-head>
+                        </md-table-row>
+
+                        <md-table-row v-for="(item,index) in basket" :key="basket[index]">
+                            <md-table-cell>{{item.name}}</md-table-cell>
+                            <md-table-cell>{{item.size}}</md-table-cell>
+
+                            <md-table-cell>{{item.price|currency}}</md-table-cell>
+                            <md-table-cell>{{item.price*item.quantity|currency}}</md-table-cell>
+                            <md-table-cell>
+
+                                <md-button class="md-icon-button md-list-action" @click="increaseQuantity(item)">
+                                    <md-icon class="md-primary">add</md-icon>
+                                </md-button>
+                                <span>{{item.quantity}}</span>
+                                <md-button class="md-icon-button md-list-action" style="align-self: center"
+                                           @click="decreaseQuantity(item)">
+
+                                    <md-icon class="md-primary">remove</md-icon>
+                                </md-button>
+
+                            </md-table-cell>
+                            <md-table-cell>
+                                <md-button class="md-icon-button md-dense md-raised md-primary"
+                                           @click="removeFomBasket(item)">
+                                    <md-icon>cached</md-icon>
+                                </md-button>
+                            </md-table-cell>
+                        </md-table-row>
+                    </md-table>
+                    <h4> Total cost : {{total|currency}} </h4>
+                    <md-button class="md-primary" @click="addNewOrder">order</md-button>
+                </div>
+                <div v-else>
+                    <p> {{basketText}}</p>
+
+                </div>
+
+            </div>
         </div>
     </div>
 </template>
@@ -91,27 +128,41 @@
     import {mapGetters} from "vuex"
     import {store} from "../store/store";
 
+
     export default {
         name: "Stock",
         data: function () {
             return {
                 basketText: "Your Basket is empty",
                 basket: [],
+                search: '',
+                searchPrice: '',
+                selectedCategory: '',
+                selectedSize: '',
+                showFilters:false,
 
             }
-        },
+        }
+        ,
+        components: {},
+
         computed: {
             ...mapGetters([
                 'getStockItems'
             ]),
             total() {
-                let totalCost = 0
+                let totalCost = 0;
 
                 this.basket.map(item => {
                         totalCost += item.quantity * item.price
                     }
                 );
                 return totalCost;
+            },
+            filtredDress: function () {
+                return this.getStockItems.filter((dress) => {
+                    return dress.price.match(this.searchPrice) && dress.name.match(this.search)
+                })
             }
         },
         methods: {
@@ -160,7 +211,16 @@
                 this.basket = [];
                 this.basketText = "Thank You, your order has been placed."
             },
+            clearFilters() {
+                this.search = '';
+                this.searchPrice = '';
+                this.selectedCategory = '';
+                this.selectedSize = []
 
+            },
+            show(){
+                this.showFilters =! this.showFilters
+            }
         },
 
 

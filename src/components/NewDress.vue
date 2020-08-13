@@ -34,7 +34,18 @@
                     </div>
                 </div>
                 <md-field>
-                    <label for="price">price</label>
+                    <label>category</label>
+                    <md-select name="size" id="size" v-model="newDress.category">
+                        <md-option value='mini'>mini</md-option>
+                        <md-option value='maxi'>maxi</md-option>
+                        <md-option value='midi'>midi</md-option>
+
+                    </md-select>
+
+                </md-field>
+
+                <md-field>
+                    <label >price</label>
                     <md-input type="text" name="price" id="price" v-model="newDress.price"/>
 
                 </md-field>
@@ -43,7 +54,11 @@
                     <md-textarea type="text" name="description" id="description" v-model="newDress.description"/>
 
                 </md-field>
+                <md-field>
+                    <label >url   </label>
+                    <md-input type="text" name="url" id="url" v-model="newDress.img.url"/>
 
+                </md-field>
 
             </md-card-content>
 
@@ -73,9 +88,13 @@
                     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.",
                     size: [],
                     price: '',
-                    img:''
+                    img: {
+                        url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
+                    },
+                    category:'',
+                    url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
                     //url: '../assets/dress-green.jpg'
-                    //  url: "https://pixabay.com/pl/photos/kobieta-m%C5%82ody-r%C3%B3%C5%BCowy-%C5%82adny-pi%C4%99kny-3075704/"
+                    //
                 },
 
             }
